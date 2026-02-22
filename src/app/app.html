@@ -1,76 +1,76 @@
-<div style="max-width: 900px; margin: auto; font-family: Arial;">
+<div class="container">
 
-  <h2>Legacy Code Migrator</h2>
+  <h2 class="title">Legacy Code Migrator</h2>
 
-  <!-- Selección de lenguajes -->
-  <div>
-    <label>Source:</label>
-    <select [(ngModel)]="sourceLanguage">
-      @for (lang of sourceLanguages; track lang.value) {
-      <option [value]="lang.value">
-        {{ lang.label }}
-      </option>
-      }
-    </select>
+  <div class="language-row">
+    <div class="select-group">
+      <label>Source</label>
+      <select [(ngModel)]="sourceLanguage">
+        @for (lang of sourceLanguages; track lang.value) {
+        <option [value]="lang.value">
+          {{ lang.label }}
+        </option>
+        }
+      </select>
+    </div>
 
-    <select [(ngModel)]="targetLanguage">
-      @for (lang of targetLanguages; track lang.value) {
-      <option [value]="lang.value">
-        {{ lang.label }}
-      </option>
-      }
-    </select>
+    <div class="select-group">
+      <label>Target</label>
+      <select [(ngModel)]="targetLanguage">
+        @for (lang of targetLanguages; track lang.value) {
+        <option [value]="lang.value">
+          {{ lang.label }}
+        </option>
+        }
+      </select>
+    </div>
   </div>
 
-  <!-- Código Legacy -->
-  <div style="margin-top: 20px;">
-    <label>Legacy Code:</label>
-    <textarea [(ngModel)]="legacyCode" rows="10" style="width: 100%; font-family: monospace;">
-    </textarea>
+  <div class="editor-section">
+    <label>Legacy Code</label>
+    <textarea [(ngModel)]="legacyCode" rows="10"></textarea>
   </div>
 
-  <!-- Botón -->
-  <button (click)="migrate()" [disabled]="loading()" style="margin-top: 10px;">
+  <button class="primary-btn" (click)="migrate()" [disabled]="loading() || !isValidCode()">
     {{ loading() ? 'Migrando...' : 'Ejecutar Migración' }}
   </button>
 
-  <!-- Error -->
   @if (error) {
-  <div style="color: red; margin-top: 10px;">
+  <div class="error">
     {{ error }}
   </div>
   }
 
-  <!-- Result()ado -->
   @if (result(); as r) {
-  <div style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px;">
+  <div class="result-section">
 
     <h3>Translated Code</h3>
-    <pre style="background: #f4f4f4; padding: 10px; overflow-x: auto; white-space: pre-wrap;">
+    <pre class="code-block">
 {{ r.translatedCode }}
       </pre>
 
     <h3>Report</h3>
 
-    <strong>Rules Applied:</strong>
-    <ul>
-      @for (rule of r.report.rulesApplied; track rule) {
-      <li>{{ rule }}</li>
-      }
-    </ul>
+    <div class="report-block">
+      <strong>Rules Applied:</strong>
+      <ul>
+        @for (rule of r.report.rulesApplied; track rule) {
+        <li>{{ rule }}</li>
+        }
+      </ul>
 
-    <strong>Warnings:</strong>
-    <ul>
-      @if (r.report.warnings.length === 0) {
-      <li>No warnings</li>
-      } @else {
-      @for (warning of r.report.warnings; track warning) {
-      <li>{{ warning }}</li>
-      }
-      }
-    </ul>
+      <strong>Warnings:</strong>
+      <ul>
+        @if (r.report.warnings.length === 0) {
+        <li>No warnings</li>
+        } @else {
+        @for (warning of r.report.warnings; track warning) {
+        <li>{{ warning }}</li>
+        }
+        }
+      </ul>
+    </div>
 
   </div>
   }
-
 </div>
