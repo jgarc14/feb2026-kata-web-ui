@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MigrateResponse } from '../models/migrate-response';
-
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class MigrationService {
 
-  private apiUrl = 'http://localhost:3000/migrate';
+  private apiUrl = `${environment.apiUrl}migrate`;
 
   constructor(private http: HttpClient) {}
 
