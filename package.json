@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:feb2026-kata-web-ui": "node dist/feb2026-kata-web-ui/server/server.mjs"
+    "serve:ssr:feb2026-kata-web-ui": "node dist/feb2026-kata-web-ui/server/server.mjs",
+    "build:prod": "ng build --configuration production"
   },
   "prettier": {
     "printWidth": 100,
