@@ -74,6 +74,7 @@ El sistema aplica reglas de migración y genera un reporte con:
 La solución está diseñada siguiendo principios de **Clean Architecture** y el patrón **Strategy**.
 
 ## 📐 Estructura del Proyecto
+```
 src/
 ├── domain/
 │ ├── services/
@@ -90,6 +91,7 @@ src/
 │
 └── main/
 └── server.ts
+```
 
 ---
 
